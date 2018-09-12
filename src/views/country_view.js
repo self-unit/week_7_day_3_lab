@@ -15,15 +15,21 @@ CountryView.prototype.render = function (countryData) {
   this.element.innerHTML = '';
 
   const countryName = document.createElement('h1');
-  countryName.textContent = countryData.name;
+  countryName.textContent = `${countryData.name} - ${countryData.nativeName}`;
   this.element.appendChild(countryName);
 
   const flagImg = document.createElement('img');
   flagImg.src = countryData.flag;
+  flagImg.height = 150;
+  flagImg.width = 300;
   this.element.appendChild(flagImg);
 
-  const countryRegion = document.createElement('h2');
-  countryRegion.textContent = `Region:\r\n${countryData.region}`;
+  const regionTitle = document.createElement('h2');
+  regionTitle.textContent = 'Region:'
+  this.element.appendChild(regionTitle);
+
+  const countryRegion = document.createElement('p');
+  countryRegion.textContent = countryData.region;
   this.element.appendChild(countryRegion);
 
   const languageTitle = document.createElement('h2');
