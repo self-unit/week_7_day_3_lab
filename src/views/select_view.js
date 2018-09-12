@@ -5,10 +5,13 @@ const SelectView = function(element) {
 
 SelectView.prototype.bindEvents = function () {
   PubSub.subscribe('Countries:countries-list', (event) => {
-    console.log('Im subscribed :D');
     const countryNames = event.detail;
-    console.log(countryNames);
     this.populate(countryNames);
+  });
+
+  this.element.addEventListener('change', (event) => {
+    const index = event.target.value;
+    PubSub.publish('SelectView:country-select', index);
   });
 };
 
