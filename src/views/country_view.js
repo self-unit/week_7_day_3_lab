@@ -12,6 +12,8 @@ CountryView.prototype.bindEvents = function () {
 };
 
 CountryView.prototype.render = function (countryData) {
+  this.element.innerHTML = '';
+
   const countryName = document.createElement('h1');
   countryName.textContent = countryData.name;
   this.element.appendChild(countryName);
@@ -23,6 +25,19 @@ CountryView.prototype.render = function (countryData) {
   const countryRegion = document.createElement('h2');
   countryRegion.textContent = `Region:\r\n${countryData.region}`;
   this.element.appendChild(countryRegion);
+
+  const languageTitle = document.createElement('h2');
+  languageTitle.textContent = 'Languages:'
+  this.element.appendChild(languageTitle);
+
+  const languageList = document.createElement('ul');
+  countryData.languages.forEach((language) => {
+    const languageItem = document.createElement('li');
+    languageItem.textContent = language.name;
+    languageList.appendChild(languageItem);
+  });
+
+  this.element.appendChild(languageList);
 };
 
 module.exports = CountryView;
